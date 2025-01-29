@@ -11,21 +11,20 @@ import (
 )
 
 type MetricsClient struct {
-    argoClient *client.Client 
+	argoClient *client.Client
 }
 
 func NewMetricsClient() (*MetricsClient, error) {
-    argoClient, err := client.NewClient() 
+	argoClient, err := client.NewClient()
 
-    if err != nil {
-        return nil, err
-    }
+	if err != nil {
+		return nil, err
+	}
 
-    return &MetricsClient{
-        argoClient: argoClient,
-    },nil 
+	return &MetricsClient{
+		argoClient: argoClient,
+	}, nil
 }
-
 
 func (metricsClient *MetricsClient) MetricsHandler(w http.ResponseWriter, r *http.Request) {
 

@@ -1,26 +1,24 @@
 package main
 
 import (
+	"github.com/prometheus/client_golang/prometheus"
 	"log"
 	"net/http"
-	"github.com/prometheus/client_golang/prometheus"
 
 	promHandler "github.com/EyalPazz/argocd-chart-monitoring/internal/prometheus"
 	promConsts "github.com/EyalPazz/argocd-chart-monitoring/internal/prometheus/consts"
-
 )
 
 func init() {
 	prometheus.MustRegister(promConsts.ChartDeploymentMetric)
 }
 
-
 func main() {
-    client, err := promHandler.NewMetricsClient()
+	client, err := promHandler.NewMetricsClient()
 
-    if err != nil {
-        panic(err)
-    }
+	if err != nil {
+		panic(err)
+	}
 
 	http.HandleFunc("/metrics", client.MetricsHandler)
 

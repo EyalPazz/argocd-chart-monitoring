@@ -8,19 +8,19 @@ import (
 )
 
 func GetConnectionFromEnv() (*types.Connection, error) {
-        token, doesExist := os.LookupEnv("ARGO_API_TOKEN")
-     
-        if !doesExist {
-            return nil, fmt.Errorf("ARGO_API_TOKEN doesn't appear in env") 
-        }
+	token, doesExist := os.LookupEnv("ARGO_API_TOKEN")
 
-        server, doesExist := os.LookupEnv("ARGO_SERVER_URL")
-     
-        if !doesExist {
-            return nil, fmt.Errorf("ARGO_SERVER_URL doesn't appear in env") 
-        }
-        return &types.Connection{
-            Server: server,
-            ApiToken: token,
-        },nil
+	if !doesExist {
+		return nil, fmt.Errorf("ARGO_API_TOKEN doesn't appear in env")
+	}
+
+	server, doesExist := os.LookupEnv("ARGO_SERVER_URL")
+
+	if !doesExist {
+		return nil, fmt.Errorf("ARGO_SERVER_URL doesn't appear in env")
+	}
+	return &types.Connection{
+		Server:   server,
+		ApiToken: token,
+	}, nil
 }
